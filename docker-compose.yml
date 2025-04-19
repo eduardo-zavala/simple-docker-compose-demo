@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: log-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: alterego
+      MYSQL_DATABASE: logdb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  logging:
+    build:
+      context: ./logging
+    container_name: logging
+    environment:
+      MYSQL_URL: jdbc:mysql://mysql:3306/logdb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: alterego
+    depends_on:
+      - mysql
+
+  greeting:
+    build:
+      context: ./greeting
+    container_name: greeting
+    ports:
+      - "8080:8080"
+    environment:
+      LOGGING_SERVICE_URL: http://logging:8081
+    depends_on:
+      - logging
+
+volumes:
+  mysql-data:
