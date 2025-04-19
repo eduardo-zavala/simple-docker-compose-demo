@@ -84,16 +84,4 @@ docker exec -it log-mysql mysql -uroot -palterego -e "USE logdb; SELECT * FROM l
 
 ---
 
-## 🎉 What You’ve Learned
-
-✅ Multi-container Docker setup with Spring Boot  
-✅ Environment variable handling using `docker-compose.yml`  
-✅ Database readiness handling with a custom script  
-✅ Debugging ports, environment, and connection issues  
-✅ Clean configuration separation (local vs Docker)
-
----
-
-Happy coding! 💻🐳  
-Feel free to star the repo if it helped you ⭐
 
